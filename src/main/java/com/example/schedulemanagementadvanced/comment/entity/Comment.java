@@ -39,6 +39,11 @@ public class Comment extends BaseEntity {
         this.schedule = schedule;
     }
 
+    // 업데이트 시에는 Setter 대신 update 활용
+    public void update(String content) {
+        this.content = content;
+    }
+
     // 수정 로직: 댓글 내용 수정
     public void updateContent(String content) {
         this.content = content;
