@@ -1,11 +1,14 @@
 package com.example.schedulemanagementadvanced.common.filter;
 
+import com.example.schedulemanagementadvanced.common.dto.ErrorResponseDto;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.util.PatternMatchUtils;
+import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
@@ -20,7 +23,6 @@ public class LoginFilter implements Filter {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String requestURI = httpRequest.getRequestURI();
-
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         try {
@@ -36,7 +38,7 @@ public class LoginFilter implements Filter {
                     log.info("미인증 사용자 요청 {}", requestURI);
                     // 로그인 화면으로 리다이렉트하거나, 401 에러를 보냅니다.
 
-                    httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "로그인 해주세요.");
+                    sendUnauthorizedResponse(httpResponse);
                     return; // 여기서 미인증 사용자는 컨트롤러로 넘어가지 않음
                 }
             }
@@ -49,9 +51,29 @@ public class LoginFilter implements Filter {
             log.info("인증 체크 필터 종료 {}", requestURI);
         }
     }
-
-    // 화이트리스트에 포함된 경로는 인증 체크를 안 한다 (false 반환)
+    // 화이트리스트 검사 메서드
     private boolean isLoginCheckPath(String requestURI) {
         return !PatternMatchUtils.simpleMatch(WHITE_LIST, requestURI);
+    }
+
+
+    private void sendUnauthorizedResponse(HttpServletResponse response) throws IOException {
+        // 1. 응답 설정 (상태코드 401, 타입 JSON, 인코딩 UTF-8)
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.setCharacterEncoding("UTF-8");
+
+        // 2. ErrorResponseDto 객체 생성
+        ErrorResponseDto errorResponse = new ErrorResponseDto(
+                "로그인이 필요합니다.",
+                HttpServletResponse.SC_UNAUTHORIZED
+        );
+
+        // 3. Jackson 라이브러리(ObjectMapper)를 사용해 자바 객체를 JSON 문자열로 변환
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonResult = objectMapper.writeValueAsString(errorResponse);
+
+        // 4. 응답 바디에 쓰기
+        response.getWriter().write(jsonResult);
     }
 }
