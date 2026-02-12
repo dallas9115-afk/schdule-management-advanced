@@ -5,7 +5,7 @@ Spring Boot와 JPA를 활용하여 구축한 **일정 관리 REST API 서버**�
 단순한 CRUD 구현을 넘어, **세션 기반의 인증/인가**, **필터(Filter)를 활용한 보안 처리**, 그리고 **전역 예외 처리(Global Exception Handling)**를 통해 견고한 백엔드 아키텍처를 구현하는 데 초점을 맞추었습니다.
 
 ---
-
+```
 ## Tech Stack
 
 | Category | Technology |
