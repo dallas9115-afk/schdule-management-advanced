@@ -21,7 +21,7 @@ Spring Boot와 JPA를 활용하여 구축한 **일정 관리 REST API 서버**�
 
 ## ERD (Entity Relationship Diagram)
 
-본 프로젝트는 **단방향 연관관계(Many-To-One)**를 원칙으로 설계되었습니다.
+본 프로젝트는 단방향 연관관계(Many-To-One)를 원칙으로 설계되었습니다.
 객체지향적인 설계를 위해 모든 연관관계의 주인은 자식 엔티티(`Schedule`, `Comment`)이며, 물리적 외래키(FK) 제약조건을 준수합니다.
 
 ```mermaid
