@@ -67,7 +67,7 @@ erDiagram
 ### 1. 3-Layer Architecture & DTO Pattern
 
 * **계층 분리**: `Controller` → `Service` → `Repository`의 역할과 책임을 명확히 분리했습니다.
-* **DTO 사용**: 엔티티(Entity)가 API 응답으로 노출되는 것을 방지하고, 순환 참조 문제를 해결하기 위해 요청/응답 시 반드시 **DTO(Data Transfer Object)**를 사용합니다.
+* **DTO 사용**: 엔티티(Entity)가 API 응답으로 노출되는 것을 방지하고, 순환 참조 문제를 해결하기 위해 요청/응답 시 반드시 DTO(Data Transfer Object)를 사용합니다.
 
 ### 2. Custom Security (Filter & Session)
 
