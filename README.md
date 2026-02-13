@@ -1,4 +1,3 @@
-```markdown
 # 일정 관리 시스템 (Schedule Management System)
 
 Spring Boot와 JPA를 활용하여 구축한 **일정 관리 REST API 서버**입니다.
