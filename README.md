@@ -1,12 +1,12 @@
 ```markdown
-#  일정 관리 시스템 (Schedule Management System)
+# 일정 관리 시스템 (Schedule Management System)
 
 Spring Boot와 JPA를 활용하여 구축한 **일정 관리 REST API 서버**입니다.
 단순한 CRUD 구현을 넘어, **세션 기반의 인증/인가**, **필터(Filter)를 활용한 보안 처리**, 그리고 **전역 예외 처리(Global Exception Handling)**를 통해 견고한 백엔드 아키텍처를 구현하는 데 초점을 맞추었습니다.
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
 | Category | Technology |
 | :--- | :--- |
@@ -20,7 +20,7 @@ Spring Boot와 JPA를 활용하여 구축한 **일정 관리 REST API 서버**�
 
 ---
 
-##  ERD (Entity Relationship Diagram)
+## ERD (Entity Relationship Diagram)
 
 본 프로젝트는 **단방향 연관관계(Many-To-One)**를 원칙으로 설계되었습니다.
 객체지향적인 설계를 위해 모든 연관관계의 주인은 자식 엔티티(`Schedule`, `Comment`)이며, 물리적 외래키(FK) 제약조건을 준수합니다.
@@ -63,7 +63,7 @@ erDiagram
 
 ---
 
-##  Key Features & Implementation
+## Key Features & Implementation
 
 ### 1. 3-Layer Architecture & DTO Pattern
 
@@ -88,7 +88,7 @@ erDiagram
 
 ---
 
-##  API Specification
+## API Specification
 
 | Domain | Method | URI | Description | Auth |
 | --- | --- | --- | --- | --- |
@@ -107,7 +107,7 @@ erDiagram
 
 ---
 
-##  Constraints & Validation
+## Constraints & Validation
 
 데이터 무결성과 보안을 위해 다음과 같은 제약 조건을 `@Valid`와 정규식(Regex)을 통해 검증합니다.
 
